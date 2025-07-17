@@ -272,5 +272,47 @@
     </div>
 
 
+
+    <script>
+
+    // Trigger counter animation when stats section is visible
+    const statsSection = document.querySelector('.stats');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    observer.observe(statsSection);
+
+    // Statistics counter animation
+    function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const target = counter.textContent;
+        const numTarget = parseInt(target.replace(/[^0-9]/g, ''));
+        const suffix = target.replace(/[0-9]/g, '');
+        let current = 0;
+        const increment = numTarget / 100;
+        
+        const updateCounter = () => {
+            if (current < numTarget) {
+                current += increment;
+                counter.textContent = Math.floor(current) + suffix;
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        
+        updateCounter();
+    });
+}
+    </script>
+
+
 </body>
 </html>
