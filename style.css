@@ -91,9 +91,11 @@ justify-content: space-between;
 align-items: center;
 }
 
+
+
 .logo {
 font-size: 2rem;
-font-weight: 800;
+font-weight: 800;   
 background: linear-gradient(45deg, #10b981, #059669);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
@@ -203,6 +205,7 @@ margin-bottom: 60px;
 }
 
 .primary-btn {
+margin-left: 120px;   
 background: linear-gradient(45deg, #10b981, #059669);
 color: white;
 padding: 18px 36px;
