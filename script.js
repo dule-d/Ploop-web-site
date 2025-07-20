@@ -42,6 +42,73 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
     });
 });
 
+// Feature cards interactive hover effects
+document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-15px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Process steps click interaction
+document.querySelectorAll('.process-step').forEach(step => {
+    step.addEventListener('click', function() {
+        const stepNumber = Array.from(this.parentNode.children).indexOf(this) + 1;
+        alert(`Step ${stepNumber}: ${this.querySelector('h3').textContent}\n\n${this.querySelector('p').textContent}`);
+    });
+});
+
+
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (loginModal.classList.contains('active')) {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        if (signupModal.classList.contains('active')) {
+            signupModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.textContent = '☰';
+            mobileMenuOpen = false;
+        }
+    }
+});
+
+
+
+
+
+// Header scroll effect
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const header = document.querySelector('header');
+    
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        header.style.transform = 'translateY(-100%)';
+    } else {
+        header.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
+// Add scroll transition to header
+document.querySelector('header').style.transition = 'transform 0.3s ease';
+
+
+
+
+
+
 // Modal functionality
 const loginModal = document.getElementById('loginModal');
 const signupModal = document.getElementById('signupModal');
@@ -49,6 +116,9 @@ const loginBtns = [document.getElementById('loginBtn'), document.getElementById(
 const signupBtns = [document.getElementById('signupBtn'), document.getElementById('mobileSignupBtn')];
 const closeLogin = document.getElementById('closeLogin');
 const closeSignup = document.getElementById('closeSignup');
+
+
+
 
 // Open login modal
 loginBtns.forEach(btn => {
@@ -60,6 +130,8 @@ loginBtns.forEach(btn => {
         });
     }
 });
+
+
 
 // Open signup modal
 signupBtns.forEach(btn => {
@@ -176,6 +248,10 @@ document.getElementById('facebookSignup').addEventListener('click', function() {
     alert('Facebook signup would be implemented here! 📘');
 });
 
+
+
+
+
 // Hero buttons with interactive feedback
 document.getElementById('getStartedBtn').addEventListener('click', function(e) {
     e.preventDefault();
@@ -190,100 +266,11 @@ document.getElementById('watchStoryBtn').addEventListener('click', function(e) {
 
 document.getElementById('finalCtaBtn').addEventListener('click', function(e) {
     e.preventDefault();
-    signupModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    loginModal.classList.add('active');
+    document.body.style.overflow = 'hidden';    
 });
 
-// Feature cards interactive hover effects
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-15px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
 
-// Process steps click interaction
-document.querySelectorAll('.process-step').forEach(step => {
-    step.addEventListener('click', function() {
-        const stepNumber = Array.from(this.parentNode.children).indexOf(this) + 1;
-        alert(`Step ${stepNumber}: ${this.querySelector('h3').textContent}\n\n${this.querySelector('p').textContent}`);
-    });
-});
 
-// Statistics counter animation
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    counters.forEach(counter => {
-        const target = counter.textContent;
-        const numTarget = parseInt(target.replace(/[^0-9]/g, ''));
-        const suffix = target.replace(/[0-9]/g, '');
-        let current = 0;
-        const increment = numTarget / 100;
-        
-        const updateCounter = () => {
-            if (current < numTarget) {
-                current += increment;
-                counter.textContent = Math.floor(current) + suffix;
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target;
-            }
-        };
-        
-        updateCounter();
-    });
-}
 
-// Trigger counter animation when stats section is visible
-const statsSection = document.querySelector('.stats');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCounters();
-            observer.unobserve(entry.target);
-        }
-    });
-});
-
-observer.observe(statsSection);
-
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        if (loginModal.classList.contains('active')) {
-            loginModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        if (signupModal.classList.contains('active')) {
-            signupModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        if (mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            mobileMenuBtn.textContent = '☰';
-            mobileMenuOpen = false;
-        }
-    }
-});
-
-// Header scroll effect
-let lastScrollTop = 0;
-window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const header = document.querySelector('header');
-    
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-        header.style.transform = 'translateY(-100%)';
-    } else {
-        header.style.transform = 'translateY(0)';
-    }
-    
-    lastScrollTop = scrollTop;
-});
-
-// Add scroll transition to header
-document.querySelector('header').style.transition = 'transform 0.3s ease';
+//finalCtaBtn

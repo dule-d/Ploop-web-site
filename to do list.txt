@@ -1,0 +1,18 @@
+add a impact, contact stuff
+add all of this :	About Us
+			Our Mission
+			Careers
+			Press
+			Help Center
+			Nutrition Guide
+			Vet Partners
+			Pet Stories
+			Sustainability Report
+			Partner With Us
+			Refer Friends
+
+make a video with ai
+connect with Firebase and google
+create a second html file for the store
+and make everything else in a separate file ig
+
