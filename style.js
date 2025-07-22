@@ -127,16 +127,17 @@ document.getElementById('finalCtaBtn').addEventListener('click', function(e) {
 
 
 
+// 
+function closeModal(modalElement) {
+  const content = modalElement.querySelector('.modal-content');
+  content.classList.add('closing');
 
-
-
-
-
-
-
-
-
-
+  setTimeout(() => {
+    modalElement.classList.remove('active');
+    content.classList.remove('closing');
+    document.body.style.overflow = 'auto';
+  }, 300); // Match animation duration in CSS
+}
 
 
 

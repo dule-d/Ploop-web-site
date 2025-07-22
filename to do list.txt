@@ -9,3 +9,6 @@ add a see your pasword button for when entering passwords
 
 OPTIONAL
 give it more animations
+
+making it so when u r loged in for the site to automaticly go to the next one
+addin passord reset

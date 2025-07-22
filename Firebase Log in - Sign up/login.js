@@ -9,6 +9,10 @@ const loginModal = document.getElementById('loginModal');
 const loginBtns = [document.getElementById('loginBtn'), document.getElementById('mobileLoginBtn')];
 const closeLogin = document.getElementById('closeLogin');
 
+// Reset password functionality
+const resetPassLink = document.getElementById("resetPass");
+const resetModal = document.getElementById("resetModal");
+const closeReset = document.getElementById("closeReset");
 
 
 // Open login modal
@@ -43,6 +47,32 @@ document.getElementById('switchToSignup').addEventListener('click', function(e) 
     signupModal.classList.add('active');
 });
 
+
+
+
+// ✅ Open the modal correctly
+document.getElementById("resetPass").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.getElementById("resetModal").classList.add("active"); // ✅ not style.display!
+});
+
+// ✅ Close modal
+document.getElementById("closeReset").addEventListener("click", () => {
+  document.getElementById("resetModal").classList.remove("active");
+});
+
+// Optional: Close when clicking outside the modal content for reset pass
+window.addEventListener("click", (e) => {
+  if (e.target === resetModal) {
+    resetModal.style.display = "none";
+  }
+});
+document.getElementById("backToLogin").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.getElementById("resetModal").classList.remove("active");
+  document.getElementById("loginModal").classList.add("active");
+});
+
 // // Form submissions log in FAKE API CALL
 // document.getElementById('loginForm').addEventListener('submit', function(e) {
 //     e.preventDefault();
@@ -75,9 +105,9 @@ document.getElementById('switchToSignup').addEventListener('click', function(e) 
 //     alert('Google login would be implemented here! 🔍');
 // });
 
-document.getElementById('facebookLogin').addEventListener('click', function() {
-    alert('Facebook login would be implemented here! 📘');
-});
+// document.getElementById('facebookLogin').addEventListener('click', function() {
+//     alert('Facebook login would be implemented here! 📘');
+// });
 
 
 
@@ -103,7 +133,8 @@ import {
     GoogleAuthProvider,
     FacebookAuthProvider,
     onAuthStateChanged,
-    updateProfile
+    updateProfile,
+    sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 
@@ -164,6 +195,8 @@ try {
     onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("✅ Logged in:", user.email);
+        10000;
+        window.location.href = "test.html";
     } else {
         console.log("🚪 Logged out");
     }
@@ -377,5 +410,23 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
 });
 
 
+// reset password functionality
+document.getElementById("resetBtn").addEventListener("click", () => {
+  const email = document.getElementById("resetEmail").value;
+  const message = document.getElementById("resetMessage");
 
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      message.textContent = "✅ Reset link sent! Check your email.";
+      message.style.color = "green";
+    })
+    .catch((error) => {
+      message.textContent = error.message;
+      message.style.color = "red";
+    });
+});
 
+// Optional: Close modal logic
+document.getElementById("closeReset").addEventListener("click", () => {
+  document.getElementById("resetModal").style.display = "none";
+});

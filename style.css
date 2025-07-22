@@ -329,10 +329,17 @@ animation-delay: 2s;
 }
 
 .floating-element:nth-child(3) {
-bottom: -30px;
-left: -20px;
+bottom: 90px;
+left: 20px;
 animation-delay: 4s;
 }
+@media (max-width: 768px) {
+  floating-element:nth-child(3)  {
+    bottom: 100px;
+  }
+}
+
+
 
 @keyframes elementFloat {
 0%, 100% { transform: translateY(0px); }
@@ -633,6 +640,14 @@ line-height: 1.8;
 color: #10b981;
 }
 
+@media (max-width: 768px) {
+  .footer-section h3,
+  .footer-section p,
+  .footer-section a {
+    text-align: center;
+  }
+}
+
 .footer-section-company h3 {
 color: #10b981;
 text-align: right;
@@ -652,15 +667,13 @@ line-height: 1.8;
 color: #10b981;
 }
 
-
-
-
-
-
-
-
-
-
+@media (max-width: 768px) {
+  .footer-section-company h3,
+  .footer-section-company p,
+  .footer-section-company a {
+    text-align: center;
+  }
+}
 
 .footer-bottom {
 text-align: center;
@@ -668,6 +681,7 @@ padding-top: 30px;
 border-top: 1px solid rgba(255, 255, 255, 0.1);
 color: #64748b;
 }
+
 
 /* Modal Styles */
 .modal {
@@ -688,7 +702,7 @@ overflow: hidden;
 display: flex;
 justify-content: center;
 align-items: center;
-  overflow-y: auto;   
+overflow-y: auto;   
 }
 
 
@@ -886,6 +900,14 @@ to {
 }
 }
 
+
+
+
+
+
+
+
+
 /* Button Loading State */
 .btn-loading {
 position: relative;
@@ -1037,3 +1059,20 @@ animation: fadeIn 0.3s ease;
     padding: 30px;
 }
 }
+
+
+.resetPass {
+  text-align: center; /* Center the <a> inside */  /* Optional spacing */
+}
+.resetPass a{
+    font-size: 20px;
+    text-decoration: none;         /* Remove underline */
+    color: #64748b;             /* Set base color */
+    font-weight: 500;
+    transition: all 0.3s ease; 
+}
+.resetPass a:hover{
+    color: #8a9cb6;                /* Lighter color on hover */
+    text-shadow: 0 0 8px #6e7b8f;  /* Glow effect */
+    transform: scale(1.05);  
+}   

@@ -222,6 +222,9 @@
                     <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="form-btn" id="loginSubmit">Sign In</button>
+                <div class="resetPass">
+                    <a href="resetModal" id="resetPass">Forgot Password?</a>
+                </div>
             </form>
             <div class="form-divider">
                 <span>or continue with</span>
@@ -285,18 +288,29 @@
 
 
 
+    <!-- Password Reset Modal -->
+    <div id="resetModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeReset">&times;</span>
 
+        <div class="modal-header">
+        <h2>Reset Your Password</h2>
+        <p>Enter your email to receive a reset link</p>
+        </div>
 
+        <div class="form-group">
+        <input type="email" id="resetEmail" placeholder="Enter your email" />
+        </div>
 
+        <button class="form-btn" id="resetBtn">Send Reset Link</button>
 
+        <p id="resetMessage" class="success-message" style="text-align:center; margin-top: 15px;"></p>
 
-
-
-
-
-
-
-
+        <div class="switch-form">
+        <a href="#" id="backToLogin">Back to Login</a>
+        </div>
+    </div>
+    </div>
 
 
 
