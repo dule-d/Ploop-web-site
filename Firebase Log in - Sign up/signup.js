@@ -70,13 +70,13 @@ document.getElementById('switchToLogin').addEventListener('click', function(e) {
 // });
 
 // Social sign up buttons
-document.getElementById('googleSignup').addEventListener('click', function() {
-    alert('Google signup would be implemented here! 🔍');
-});
+// document.getElementById('googleSignup').addEventListener('click', function() {
+//     alert('Google signup would be implemented here! 🔍');
+// });
 
-document.getElementById('facebookSignup').addEventListener('click', function() {
-    alert('Facebook signup would be implemented here! 📘');
-});
+// document.getElementById('facebookSignup').addEventListener('click', function() {
+//     alert('Facebook signup would be implemented here! 📘');
+// });
 
 
 
@@ -121,6 +121,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 // SIGNUP FORM HANDLER
 document.getElementById('signupForm').addEventListener('submit', async function (e) {
@@ -158,5 +160,127 @@ try {
         submitBtn.disabled = false;
         console.error("Signup error:", error.code, error.message);
         alert("❌ " + error.message);
+    }
+});
+
+//Google Sign-Up Handler
+document.getElementById('googleSignup').addEventListener('click', async function (e) {
+    e.preventDefault();
+    
+    const googleBtn = document.getElementById('googleSignup');
+    const successMsg = document.getElementById('signupSuccess');
+    
+    // Add loading state to Google button
+    const originalText = googleBtn.innerHTML;
+    googleBtn.innerHTML = '<span>⏳</span> Signing up with Google...';
+    googleBtn.disabled = true;
+    
+    try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        
+        console.log("Google signup successful:", user.uid);
+        console.log("User info:", {
+            name: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL
+        });
+        
+        // Show success message
+        successMsg.textContent = `Welcome ${user.displayName}! Account created successfully! 🎉`;
+        successMsg.classList.add('show');
+        
+        // Reset button
+        googleBtn.innerHTML = originalText;
+        googleBtn.disabled = false;
+        
+        setTimeout(() => {
+            successMsg.classList.remove('show');
+            document.getElementById('signupModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            window.location.href = "test.html";
+        }, 1000);
+        
+    } catch (error) {
+        // Reset button on error
+        googleBtn.innerHTML = originalText;
+        googleBtn.disabled = false;
+        
+        console.error("Google signup error:", error.code, error.message);
+        
+        // Handle specific error cases
+        if (error.code === 'auth/popup-closed-by-user') {
+            alert("❌ Sign-up cancelled. Please try again.");
+        } else if (error.code === 'auth/popup-blocked') {
+            alert("❌ Popup blocked by browser. Please allow popups and try again.");
+        } else if (error.code === 'auth/account-exists-with-different-credential') {
+            alert("❌ An account already exists with this email using a different sign-in method.");
+        } else {
+            alert("❌ Google sign-up failed: " + error.message);
+        }
+    }
+});
+
+// FACEBOOK SIGN-UP HANDLER
+document.getElementById('facebookSignup').addEventListener('click', async function (e) {
+    e.preventDefault();
+    
+    const facebookBtn = document.getElementById('facebookSignup');
+    const successMsg = document.getElementById('signupSuccess');
+    
+    // Add loading state to Facebook button
+    const originalText = facebookBtn.innerHTML;
+    facebookBtn.innerHTML = '<span>⏳</span> Signing up with Facebook...';
+    facebookBtn.disabled = true;
+    
+    try {
+        const result = await signInWithPopup(auth, facebookProvider);
+        const user = result.user;
+        
+        console.log("Facebook signup successful:", user.uid);
+        console.log("User info:", {
+            name: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL
+        });
+        
+        // Show success message
+        successMsg.textContent = `Welcome ${user.displayName}! Account created successfully! 🎉`;
+        successMsg.classList.add('show');
+        
+        // Reset button
+        facebookBtn.innerHTML = originalText;
+        facebookBtn.disabled = false;
+        
+        setTimeout(() => {
+            successMsg.classList.remove('show');
+            document.getElementById('signupModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            window.location.href = "test.html";
+        }, 1000);
+        
+    } catch (error) {
+        // Reset button on error
+        facebookBtn.innerHTML = originalText;
+        facebookBtn.disabled = false;
+        
+        console.error("Facebook signup error:", error.code, error.message);
+        
+        // Handle specific error cases
+        if (error.code === 'auth/popup-closed-by-user') {
+            alert("❌ Sign-up cancelled. Please try again.");
+        } else if (error.code === 'auth/popup-blocked') {
+            alert("❌ Popup blocked by browser. Please allow popups and try again.");
+        } else if (error.code === 'auth/account-exists-with-different-credential') {
+            alert("❌ An account already exists with this email using a different sign-in method.");
+        } else if (error.code === 'auth/auth-domain-config-required') {
+            alert("❌ Facebook login is not properly configured. Please contact support.");
+        } else if (error.code === 'auth/operation-not-allowed') {
+            alert("❌ Facebook sign-up is not enabled. Please contact support.");
+        } else if (error.code === 'auth/user-disabled') {
+            alert("❌ This account has been disabled. Please contact support.");
+        } else {
+            alert("❌ Facebook sign-up failed: " + error.message);
+        }
     }
 });
