@@ -765,6 +765,7 @@ color: #f8fafc;
 }
 
 .form-group {
+position: relative;
 margin-bottom: 20px;
 }
 
@@ -795,6 +796,44 @@ box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 .form-group input::placeholder {
 color: #64748b;
 }
+
+.form-group .show-password {
+    position: absolute;
+    right: 15px;
+    bottom: 14px; /* Position from bottom of the form-group */
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    object-fit: contain; 
+    transition: opacity 0.2s ease;
+    z-index: 1;
+}
+
+.form-group .show-password:hover {
+  opacity: 1;
+}
+
+/* .form-group .show-password-signup{
+    position: absolute;
+    right: 50px;
+    top: 447px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    object-fit: contain; 
+    transition: opacity 0.2s ease;
+}
+.form-group .show-password-signup:hover {
+  opacity: 1;
+}
+ */
+
+
+
+
 
 .form-btn {
 width: 100%;

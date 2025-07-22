@@ -122,12 +122,35 @@ document.getElementById('finalCtaBtn').addEventListener('click', function(e) {
 
 
 
+// Show/hide password for login
+function setupPasswordToggle(eyeIconId, inputId) {
+  const icon = document.getElementById(eyeIconId);
+  const input = document.getElementById(inputId);
+
+  if (!icon || !input) return;
+
+  icon.addEventListener("click", () => {
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+    icon.src = isPassword ? "Photos/eye-open.png" : "Photos/eye-close.png";
+  });
+}
+
+// Setup toggles for both inputs
+setupPasswordToggle("showPasswordLogin", "loginPassword");
+setupPasswordToggle("showPasswordSignup", "signupPassword");
 
 
 
 
 
-// 
+
+
+
+
+
+
+// this is for the reset password functionality
 function closeModal(modalElement) {
   const content = modalElement.querySelector('.modal-content');
   content.classList.add('closing');

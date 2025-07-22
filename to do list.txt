@@ -1,14 +1,14 @@
 make a video with ai
 connect with Firebase and google ✅
-create a second html file for the store
+create a second html file for the store 
 and make everything else in a separate file ig ✅
 make a instagram, facebook and youtube account
-fix some bugs (company stuff to be more compact and more mobile frendly)
-add a see your pasword button for when entering passwords
+fix some bugs (company stuff to be more compact and more mobile frendly) ✅
+add a see your pasword button for when entering passwords ✅
+making it so when u r loged in for the site to automaticly go to the next one
+add a reset password 
 
 
 OPTIONAL
 give it more animations
 
-making it so when u r loged in for the site to automaticly go to the next one
-addin passord reset
