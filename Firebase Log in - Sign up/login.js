@@ -195,8 +195,6 @@ try {
     onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("✅ Logged in:", user.email);
-        10000;
-        window.location.href = "test.html";
     } else {
         console.log("🚪 Logged out");
     }
