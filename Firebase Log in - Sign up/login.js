@@ -9,10 +9,7 @@ const loginModal = document.getElementById('loginModal');
 const loginBtns = [document.getElementById('loginBtn'), document.getElementById('mobileLoginBtn')];
 const closeLogin = document.getElementById('closeLogin');
 
-// Reset password functionality
-const resetPassLink = document.getElementById("resetPass");
-const resetModal = document.getElementById("resetModal");
-const closeReset = document.getElementById("closeReset");
+
 
 
 // Open login modal
@@ -72,6 +69,14 @@ document.getElementById("backToLogin").addEventListener("click", (e) => {
   document.getElementById("resetModal").classList.remove("active");
   document.getElementById("loginModal").classList.add("active");
 });
+
+
+
+
+
+
+
+
 
 // // Form submissions log in FAKE API CALL
 // document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -151,7 +156,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); 
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider(app);
@@ -201,63 +206,63 @@ try {
 });
 
 
-//Google Sign-Up Handler
-document.getElementById('googleSignup').addEventListener('click', async function (e) {
-    e.preventDefault();
+// //Google Sign-Up Handler
+// document.getElementById('googleSignup').addEventListener('click', async function (e) {
+//     e.preventDefault();
     
-    const googleBtn = document.getElementById('googleSignup');
-    const successMsg = document.getElementById('signupSuccess');
+//     const googleBtn = document.getElementById('googleSignup');
+//     const successMsg = document.getElementById('signupSuccess');
     
-    // Add loading state to Google button
-    const originalText = googleBtn.innerHTML;
-    googleBtn.innerHTML = '<span>⏳</span> Signing up with Google...';
-    googleBtn.disabled = true;
+//     // Add loading state to Google button
+//     const originalText = googleBtn.innerHTML;
+//     googleBtn.innerHTML = '<span>⏳</span> Signing up with Google...';
+//     googleBtn.disabled = true;
     
-    try {
-        const result = await signInWithPopup(auth, googleProvider);
-        const user = result.user;
+//     try {
+//         const result = await signInWithPopup(auth, googleProvider);
+//         const user = result.user;
         
-        console.log("Google signup successful:", user.uid);
-        console.log("User info:", {
-            name: user.displayName,
-            email: user.email,
-            photoURL: user.photoURL
-        });
+//         console.log("Google signup successful:", user.uid);
+//         console.log("User info:", {
+//             name: user.displayName,
+//             email: user.email,
+//             photoURL: user.photoURL
+//         });
         
-        // Show success message
-        successMsg.textContent = `Welcome ${user.displayName}! Account created successfully! 🎉`;
-        successMsg.classList.add('show');
+//         // Show success message
+//         successMsg.textContent = `Welcome ${user.displayName}! Account created successfully! 🎉`;
+//         successMsg.classList.add('show');
         
-        // Reset button
-        googleBtn.innerHTML = originalText;
-        googleBtn.disabled = false;
+//         // Reset button
+//         googleBtn.innerHTML = originalText;
+//         googleBtn.disabled = false;
         
-        setTimeout(() => {
-            successMsg.classList.remove('show');
-            document.getElementById('signupModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            window.location.href = "test.html";
-        }, 1000);
+//         setTimeout(() => {
+//             successMsg.classList.remove('show');
+//             document.getElementById('signupModal').classList.remove('active');
+//             document.body.style.overflow = 'auto';
+//             window.location.href = "test.html";
+//         }, 1000);
         
-    } catch (error) {
-        // Reset button on error
-        googleBtn.innerHTML = originalText;
-        googleBtn.disabled = false;
+//     } catch (error) {
+//         // Reset button on error
+//         googleBtn.innerHTML = originalText;
+//         googleBtn.disabled = false;
         
-        console.error("Google signup error:", error.code, error.message);
+//         console.error("Google signup error:", error.code, error.message);
         
-        // Handle specific error cases
-        if (error.code === 'auth/popup-closed-by-user') {
-            alert("❌ Sign-up cancelled. Please try again.");
-        } else if (error.code === 'auth/popup-blocked') {
-            alert("❌ Popup blocked by browser. Please allow popups and try again.");
-        } else if (error.code === 'auth/account-exists-with-different-credential') {
-            alert("❌ An account already exists with this email using a different sign-in method.");
-        } else {
-            alert("❌ Google sign-up failed: " + error.message);
-        }
-    }
-});
+//         // Handle specific error cases
+//         if (error.code === 'auth/popup-closed-by-user') {
+//             alert("❌ Sign-up cancelled. Please try again.");
+//         } else if (error.code === 'auth/popup-blocked') {
+//             alert("❌ Popup blocked by browser. Please allow popups and try again.");
+//         } else if (error.code === 'auth/account-exists-with-different-credential') {
+//             alert("❌ An account already exists with this email using a different sign-in method.");
+//         } else {
+//             alert("❌ Google sign-up failed: " + error.message);
+//         }
+//     }
+// });
 
 // Google Sign-In Handler for Login
 document.getElementById('googleLogin').addEventListener('click', async function (e) {
@@ -406,25 +411,79 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
         }
     }
 });
+    // // Reset password functionality
+    // const email = document.getElementById("resetEmail").value;
+    // const successMsgReset = document.getElementById('resetpassMessage');
+    // const resetBtn = document.getElementById("resetBtn");
+    // const resetEmailInput = document.getElementById("resetEmail");
+    // const resetModal = document.getElementById("resetModal");
+    // const backToLoginLink = document.getElementById("backToLogin");
+    // resetBtn.addEventListener("click", () => {
+        
+    // console.log("Clicked. Email:", email);
+    
+    
+    // if (!email) {
+    //     resetMessage.textContent = "Please enter your email.";
+    //     resetMessage.style.color = "orange";
+    //     return;
+    // }
+
+    // sendPasswordResetEmail(auth, email)
+    // .then(() => {
+    //     console.log("Password reset email sent!");
+    //     successMsgReset.classList.add('show');
+    //     successMsgReset.style.color = "#0CAF78";
+    // })
+    // .catch((error) => {
+    //     console.error("Password reset error:", error);
+    //     resetMessage.textContent = "Error: " + error.message;
+    //     resetMessage.style.color = "red";
+    // });
+    // });
+    const resetMessagepass = document.getElementById("resetpasseMessage");
+    const email = document.getElementById("resetEmail").value;
+    const resetBtn = document.getElementById("resetBtn");
 
 
-// reset password functionality
-document.getElementById("resetBtn").addEventListener("click", () => {
-  const email = document.getElementById("resetEmail").value;
-  const message = document.getElementById("resetMessage");
+    resetBtn.addEventListener("click", () => {
+    const email = document.getElementById("resetEmail").value.trim();
+    console.log("Clicked. Email:", email);
 
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      message.textContent = "✅ Reset link sent! Check your email.";
-      message.style.color = "green";
-    })
-    .catch((error) => {
-      message.textContent = error.message;
-      message.style.color = "red";
-    });
+    if (!email) {
+        resetMessagepass.textContent = "Please enter your email.";
+        resetMessagepass.style.color = "orange";
+        resetMessagepass.classList.add("show");
+        return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            resetMessagepass.textContent = "Reset email sent successfully!";
+            resetMessagepass.style.color = "#0CAF78";
+            resetMessagepass.classList.add("show");
+        })
+        .catch((error) => {
+            console.error("Password reset error:", error);
+            let msg = "Something went wrong.";
+            if (error.code === "auth/user-not-found") {
+                msg = "No user found with that email.";
+            } else if (error.code === "auth/invalid-email") {
+                msg = "Invalid email address.";
+            }
+            resetMessagepass.textContent = msg;
+            resetMessagepass.style.color = "red";
+            resetMessagepass.classList.add("show");
+        });
 });
 
-// Optional: Close modal logic
-document.getElementById("closeReset").addEventListener("click", () => {
-  document.getElementById("resetModal").style.display = "none";
-});
+
+
+    // resetBtn.addEventListener("click", () => {     
+    // console.log("Clicked. Email:", email);
+
+
+    // resetMessagepass.textContent = "Reset email sent successfully!"; // Add your message
+    // resetMessagepass.classList.add("show");
+    
+    // });

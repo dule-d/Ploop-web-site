@@ -1052,6 +1052,22 @@ display: block;
 animation: fadeIn 0.3s ease;
 }
 
+
+/* Seccess message for pass reset */
+.success-message-password {
+display: none;
+color: #858e8b;
+text-shadow: 0 5px 20px rgba(104, 110, 108, 0.486);
+text-align: center;
+font-size: 1.2rem;
+} 
+
+.success-message-password.show {
+display: block;
+animation: fadeIn 0.3s ease;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
 .hero h1 {
