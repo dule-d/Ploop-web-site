@@ -9,6 +9,10 @@ const loginModal = document.getElementById('loginModal');
 const loginBtns = [document.getElementById('loginBtn'), document.getElementById('mobileLoginBtn')];
 const closeLogin = document.getElementById('closeLogin');
 
+const resetPassLink = document.getElementById('resetPass');
+const resetModal = document.getElementById('resetModal');
+const closeResetBtn = document.getElementById('closeReset');
+const backToLoginLink = document.getElementById('backToLogin');
 
 
 
@@ -46,32 +50,58 @@ document.getElementById('switchToSignup').addEventListener('click', function(e) 
 
 
 
+// // ✅ Open the modal correctly
+// document.getElementById("resetPass").addEventListener("click", (e) => {
+//   e.preventDefault();
+//   document.getElementById("resetModal").classList.add("active"); // ✅ not style.display!
+// });
 
-// ✅ Open the modal correctly
-document.getElementById("resetPass").addEventListener("click", (e) => {
-  e.preventDefault();
-  document.getElementById("resetModal").classList.add("active"); // ✅ not style.display!
+// // ✅ Close modal
+// document.getElementById("closeReset").addEventListener("click", () => {
+//   document.getElementById("resetModal").classList.remove("active");
+// });
+
+// // Optional: Close when clicking outside the modal content for reset pass
+// window.addEventListener("click", (e) => {
+//   if (e.target === resetModal) {
+//     resetModal.style.display = "none";
+//   }
+// });
+// document.getElementById("backToLogin").addEventListener("click", (e) => {
+//   e.preventDefault();
+//   document.getElementById("resetModal").classList.remove("active");
+//   document.getElementById("loginModal").classList.add("active");
+// });
+
+// ✅ Open reset modal
+resetPassLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginModal.classList.remove('active');
+    resetModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 });
 
-// ✅ Close modal
-document.getElementById("closeReset").addEventListener("click", () => {
-  document.getElementById("resetModal").classList.remove("active");
+// ✅ Close reset modal (X button)
+closeResetBtn.addEventListener('click', () => {
+    resetModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
 });
 
-// Optional: Close when clicking outside the modal content for reset pass
-window.addEventListener("click", (e) => {
-  if (e.target === resetModal) {
-    resetModal.style.display = "none";
-  }
-});
-document.getElementById("backToLogin").addEventListener("click", (e) => {
-  e.preventDefault();
-  document.getElementById("resetModal").classList.remove("active");
-  document.getElementById("loginModal").classList.add("active");
+// ✅ Close reset modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === resetModal) {
+        resetModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 });
 
-
-
+// ✅ Back to login modal
+backToLoginLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetModal.classList.remove('active');
+    loginModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
 
 
 

@@ -22,6 +22,7 @@ const oobCode = urlParams.get("oobCode");
 document.getElementById("resetPasswordBtn").addEventListener("click", () => {
   const newPassword = document.getElementById("newPassword").value;
   const message = document.getElementById("message");
+  const message2 = document.getElementById("message2");
 
   if (!newPassword || newPassword.length < 6) {
     message.textContent = "Password must be at least 6 characters.";
@@ -32,6 +33,7 @@ document.getElementById("resetPasswordBtn").addEventListener("click", () => {
   confirmPasswordReset(auth, oobCode, newPassword)
     .then(() => {
       message.textContent = "Password has been reset successfully!";
+      message2.textContent = "Please log in with your new password and close this window.";
       message.style.color = "green";
     })
     .catch((error) => {
