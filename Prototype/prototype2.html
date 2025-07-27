@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPaws - Sustainable Pet Nutrition Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a2744;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 39, 68, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 208, 132, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00D084;
+            text-decoration: none;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .global-search {
+            width: 100%;
+            padding: 12px 50px 12px 20px;
+            border: 2px solid rgba(0, 208, 132, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .global-search:focus {
+            outline: none;
+            border-color: #00D084;
+            box-shadow: 0 0 20px rgba(0, 208, 132, 0.3);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #00D084;
+            border: none;
+            color: #1a2744;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 208, 132, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #00D084;
+            color: #1a2744;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            background: rgba(26, 39, 68, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 208, 132, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            min-width: 200px;
+            display: none;
+            z-index: 1001;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 0;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: #00D084;
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: rgba(45, 58, 90, 0.5);
+            border-bottom: 1px solid rgba(0, 208, 132, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #00D084;
+            border-bottom-color: #00D084;
+            background: rgba(0, 208, 132, 0.1);
+        }
+
+        /* Mega Menu */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(26, 39, 68, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 208, 132, 0.2);
+            padding: 2rem;
+            display: none;
+            z-index: 999;
+            min-height: 300px;
+        }
+
+        .mega-menu.show {
+            display: block;
+        }
+
+        .mega-menu-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .mega-category {
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .mega-category h3 {
+            color: #00D084;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .mega-category ul {
+            list-style: none;
+        }
+
+        .mega-category li {
+            margin-bottom: 0.5rem;
+        }
+
+        .mega-category a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mega-category a:hover {
+            color: #00D084;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 208, 132, 0.1) 0%, rgba(45, 58, 90, 0.3) 100%);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00D084 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #b0c4de;
+        }
+
+        .hero-cta {
+            background: #00D084;
+            border: none;
+            color: #1a2744;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background: #00b572;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 208, 132, 0.3);
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(0, 208, 132, 0.1);
+            border: 1px solid rgba(0, 208, 132, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00D084;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+            gap: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            color: #00D084;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .filter-option input[type="checkbox"] {
+            accent-color: #00D084;
+        }
+
+        .price-range {
+            margin-top: 1rem;
+        }
+
+        .range-slider {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
+
+        /* Product Grid */
+        .products-section {
+            flex: 1;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .products-title {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .sort-dropdown {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 208, 132, 0.3);
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 208, 132, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #00D084;
+            box-shadow: 0 15px 30px rgba(0, 208, 132, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #00D084 0%, #00b572 100%);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1a2744;
+            position: relative;
+        }
+
+        .stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .in-stock {
+            background: rgba(0, 208, 132, 0.8);
+        }
+
+        .out-of-stock {
+            background: rgba(255, 100, 100, 0.8);
+        }
+
+        .product-info h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .product-description {
+            color: #b0c4de;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00D084;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background: #00D084;
+            border: none;
+            color: #1a2744;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #00b572;
+        }
+
+        .add-to-cart:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        .wishlist-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 208, 132, 0.3);
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-btn:hover {
+            background: rgba(0, 208, 132, 0.2);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 208, 132, 0.3);
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: #00D084;
+            color: #1a2744;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(26, 39, 68, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(0, 208, 132, 0.2);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 208, 132, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            color: #00D084;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            background: #00D084;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a2744;
+            font-size: 1.2rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: #00D084;
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #ffffff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-total {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 208, 132, 0.2);
+            background: rgba(0, 208, 132, 0.1);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #00D084;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #00D084;
+            border: none;
+            color: #1a2744;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Profile Panel */
+        .profile-panel {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 500px;
+            height: 100vh;
+            background: rgba(26, 39, 68, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(0, 208, 132, 0.2);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .profile-panel.open {
+            right: 0;
+        }
+
+        .profile-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 208, 132, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-sections {
+            padding: 1rem;
+        }
+
+        .profile-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .profile-section h3 {
+            color: #00D084;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .order-item {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .order-id {
+            color: #00D084;
+            font-weight: bold;
+        }
+
+        .order-date {
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, rgba(0, 208, 132, 0.2) 0%, rgba(45, 58, 90, 0.3) 100%);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid rgba(0, 208, 132, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .newsletter-btn {
+            background: #00D084;
+            border: none;
+            color: #1a2744;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(26, 39, 68, 0.8);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(0, 208, 132, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #00D084;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00D084;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            background: rgba(0, 208, 132, 0.2);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #00D084;
+            color: #1a2744;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            color: #b0c4de;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+            
+            .mega-menu-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .cart-sidebar,
+            .profile-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .mega-menu-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(2) { animation-delay: 0.1s; }
+        .product-card:nth-child(3) { animation-delay: 0.2s; }
+        .product-card:nth-child(4) { animation-delay: 0.3s; }
+        .product-card:nth-child(5) { animation-delay: 0.4s; }
+        .product-card:nth-child(6) { animation-delay: 0.5s; }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00D084;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                🐾 EcoPaws
+            </a>
+            
+            <div class="search-container">
+                <input type="text" class="global-search" placeholder="Search for sustainable pet food..." id="globalSearch">
+                <button class="search-btn" id="globalSearchBtn">🔍</button>
+            </div>
+            
+            <div class="header-actions">
+                <button class="action-btn" id="cartBtn">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                
+                <div class="profile-dropdown">
+                    <button class="action-btn" id="profileBtn">👤</button>
+                    <div class="dropdown-menu" id="profileDropdown">
+                        <a href="#" class="dropdown-item">My Account</a>
+                        <a href="#" class="dropdown-item">Orders</a>
+                        <a href="#" class="dropdown-item">Wishlist</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <hr style="border-color: rgba(255,255,255,0.1); margin: 0.5rem 0;">
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-menu="shop">Shop</a>
+                    <div class="mega-menu" id="shopMegaMenu">
+                        <div class="mega-menu-content">
+                            <div class="mega-category">
+                                <h3>🐕 Dog Food</h3>
+                                <ul>
+                                    <li><a href="#">Organic Dry Food</a></li>
+                                    <li><a href="#">Wet Food</a></li>
+                                    <li><a href="#">Raw Food</a></li>
+                                    <li><a href="#">Grain-Free</a></li>
+                                    <li><a href="#">Puppy Food</a></li>
+                                    <li><a href="#">Senior Dog Food</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-category">
+                                <h3>🐱 Cat Food</h3>
+                                <ul>
+                                    <li><a href="#">Organic Dry Food</a></li>
+                                    <li><a href="#">Wet Food</a></li>
+                                    <li><a href="#">Raw Food</a></li>
+                                    <li><a href="#">Grain-Free</a></li>
+                                    <li><a href="#">Kitten Food</a></li>
+                                    <li><a href="#">Senior Cat Food</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-category">
+                                <h3>🌱 Eco-Friendly</h3>
+                                <ul>
+                                    <li><a href="#">100% Organic</a></li>
+                                    <li><a href="#">Recycled Packaging</a></li>
+                                    <li><a href="#">Carbon Neutral</a></li>
+                                    <li><a href="#">Sustainable Treats</a></li>
+                                    <li><a href="#">Plant-Based</a></li>
+                                    <li><a href="#">Zero Waste</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-category">
+                                <h3>💊 Supplements</h3>
+                                <ul>
+                                    <li><a href="#">Vitamins</a></li>
+                                    <li><a href="#">Joint Support</a></li>
+                                    <li><a href="#">Probiotics</a></li>
+                                    <li><a href="#">Omega-3</a></li>
+                                    <li><a href="#">Digestive Health</a></li>
+                                    <li><a href="#">Skin & Coat</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Feed Your Pet. Save the Planet.</h1>
+            <p>Premium sustainable nutrition that nourishes your beloved pets while protecting our Earth for future generations</p>
+            <button class="hero-cta">Shop Eco-Friendly Food</button>
+        </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section class="stats-dashboard">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">🍽️</div>
+                <div class="stat-number">2.5M+</div>
+                <div class="stat-label">Meals Served</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">♻️</div>
+                <div class="stat-number">75%</div>
+                <div class="stat-label">Waste Reduced</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🐾</div>
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Happy Pets</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🌱</div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Carbon Neutral</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h3 class="filter-title">🔍 Filter Products</h3>
+                
+                <div class="filter-group">
+                    <h4 style="color: #ffffff; margin-bottom: 0.5rem;">Pet Type</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="dogs" checked>
+                        <label for="dogs">Dogs</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cats" checked>
+                        <label for="cats">Cats</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="birds">
+                        <label for="birds">Birds</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 style="color: #ffffff; margin-bottom: 0.5rem;">Food Type</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="organic" checked>
+                        <label for="organic">Organic</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="grain-free">
+                        <label for="grain-free">Grain-Free</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="raw">
+                        <label for="raw">Raw Food</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 style="color: #ffffff; margin-bottom: 0.5rem;">Sustainability</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="recycled-pack">
+                        <label for="recycled-pack">Recycled Packaging</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="carbon-neutral">
+                        <label for="carbon-neutral">Carbon Neutral</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="zero-waste">
+                        <label for="zero-waste">Zero Waste</label>
+                    </div>
+                </div>
+
+                <div class="price-range">
+                    <h4 style="color: #ffffff; margin-bottom: 0.5rem;">Price Range</h4>
+                    <input type="range" class="range-slider" min="0" max="100" value="50" id="priceRange">
+                    <div class="range-values">
+                        <span>$0</span>
+                        <span id="maxPrice">$50</span>
+                        <span>$100+</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Products Section -->
+        <main class="products-section">
+            <div class="products-header">
+                <h2 class="products-title">Premium Pet Food</h2>
+                <select class="sort-dropdown" id="sortSelect">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Best Rated</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn">← Previous</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">Next →</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button class="close-cart" id="closeCart">✕</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+        
+        <div class="cart-total">
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">$0.00</span>
+            </div>
+            <div class="total-row">
+                <span>Shipping:</span>
+                <span>Free</span>
+            </div>
+            <div class="total-row">
+                <span>Tax:</span>
+                <span id="tax">$0.00</span>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.2); margin: 1rem 0;">
+            <div class="total-row">
+                <span>Total:</span>
+                <span class="total-price" id="totalPrice">$0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Profile Panel -->
+    <div class="profile-panel" id="profilePanel">
+        <div class="profile-header">
+            <h2>My Account</h2>
+            <button class="close-cart" id="closeProfile">✕</button>
+        </div>
+        
+        <div class="profile-sections">
+            <div class="profile-section">
+                <h3>👤 Account Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@email.com</p>
+                <p><strong>Member Since:</strong> January 2024</p>
+            </div>
+            
+            <div class="profile-section">
+                <h3>📦 Recent Orders</h3>
+                <div class="order-item">
+                    <div class="order-id">Order #ECO-12345</div>
+                    <div class="order-date">March 15, 2024 - $89.99</div>
+                    <div style="color: #b0c4de; font-size: 0.9rem;">Premium Organic Dog Food Bundle</div>
+                </div>
+                <div class="order-item">
+                    <div class="order-id">Order #ECO-12344</div>
+                    <div class="order-date">March 1, 2024 - $45.50</div>
+                    <div style="color: #b0c4de; font-size: 0.9rem;">Eco-Friendly Cat Treats</div>
+                </div>
+                <div class="order-item">
+                    <div class="order-id">Order #ECO-12343</div>
+                    <div class="order-date">February 20, 2024 - $67.25</div>
+                    <div style="color: #b0c4de; font-size: 0.9rem;">Sustainable Bird Food Mix</div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h3>❤️ Saved Items</h3>
+                <p>• Premium Organic Dog Food - Large Breed</p>
+                <p>• Eco-Friendly Cat Treats - Salmon Flavor</p>
+                <p>• Sustainable Bird Food - Mixed Seeds</p>
+                <p>• Plant-Based Dog Treats - Peanut Butter</p>
+            </div>
+            
+            <div class="profile-section">
+                <h3>🏠 Delivery Addresses</h3>
+                <div style="margin-bottom: 1rem;">
+                    <strong>Home Address</strong><br>
+                    123 Green Street<br>
+                    Eco City, EC 12345
+                </div>
+                <div>
+                    <strong>Work Address</strong><br>
+                    456 Sustainable Ave<br>
+                    Green Town, GT 67890
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h3>🔔 Preferences</h3>
+                <p><strong>Pet Types:</strong> Dogs, Cats</p>
+                <p><strong>Dietary Preferences:</strong> Organic, Grain-Free</p>
+                <p><strong>Delivery Schedule:</strong> Monthly Auto-Delivery</p>
+                <p><strong>Notifications:</strong> Email, SMS</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>🌱 Join Our Eco-Community</h2>
+            <p>Get exclusive offers, pet care tips, and sustainability updates delivered to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🐾 EcoPaws</h3>
+                <p>Sustainable nutrition for your beloved pets. Our mission is to provide the highest quality, eco-friendly pet food while protecting our planet.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📺</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">Dog Food</a></li>
+                    <li><a href="#">Cat Food</a></li>
+                    <li><a href="#">Treats & Snacks</a></li>
+                    <li><a href="#">Supplements</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Certifications</h3>
+                <p>🌱 USDA Organic Certified</p>
+                <p>♻️ Carbon Neutral Shipping</p>
+                <p>🏆 B-Corp Certified</p>
+                <p>✅ Non-GMO Project Verified</p>
+                <p>🐕 AAFCO Approved</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 EcoPaws. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Premium Organic Dog Food - Large Breed",
+                description: "100% organic ingredients with sustainable packaging. Perfect for large breed dogs with sensitive stomachs.",
+                price: 49.99,
+                originalPrice: 59.99,
+                category: "dogs",
+                type: "organic",
+                sustainability: ["recycled-pack", "carbon-neutral"],
+                icon: "🐕",
+                rating: 4.8,
+                reviews: 245,
+                inStock: true,
+                stockCount: 15
+            },
+            {
+                id: 2,
+                name: "Eco-Friendly Cat Treats - Salmon",
+                description: "Made from wild-caught salmon in 100% recycled packaging. Irresistible taste cats love.",
+                price: 24.99,
+                originalPrice: 29.99,
+                category: "cats",
+                type: "organic",
+                sustainability: ["recycled-pack", "zero-waste"],
+                icon: "🐱",
+                rating: 4.9,
+                reviews: 189,
+                inStock: true,
+                stockCount: 32
+            },
+            {
+                id: 3,
+                name: "Sustainable Bird Food Mix",
+                description: "Organic seed blend in compostable packaging. Supports wild bird conservation efforts.",
+                price: 18.99,
+                originalPrice: 22.99,
+                category: "birds",
+                type: "organic",  
+                sustainability: ["carbon-neutral", "zero-waste"],
+                icon: "🐦",
+                rating: 4.7,
+                reviews: 156,
+                inStock: true,
+                stockCount: 8
+            },
+            {
+                id: 4,
+                name: "Plant-Based Dog Treats - Peanut Butter",
+                description: "100% plant-based treats that dogs absolutely love. Zero animal products, maximum taste.",
+                price: 32.50,
+                originalPrice: 38.99,
+                category: "dogs",
+                type: "grain-free",
+                sustainability: ["recycled-pack", "carbon-neutral"],
+                icon: "🦴",
+                rating: 4.6,
+                reviews: 298,
+                inStock: false,
+                stockCount: 0
+            },
+            {
+                id: 5,
+                name: "Organic Cat Food - Indoor Formula",
+                description: "Specially formulated for indoor cats with natural ingredients and reduced calories.",
+                price: 39.99,
+                originalPrice: 45.99,
+                category: "cats",
+                type: "organic",
+                sustainability: ["carbon-neutral"],
+                icon: "🐱",
+                rating: 4.8,
+                reviews: 167,
+                inStock: true,
+                stockCount: 21
+            },
+            {
+                id: 6,
+                name: "Grain-Free Dog Food - Wild Game",
+                description: "High-protein formula with wild game meat. Perfect for active dogs and working breeds.",
+                price: 54.99,
+                originalPrice: 64.99,
+                category: "dogs",
+                type: "grain-free",
+                sustainability: ["recycled-pack"],
+                icon: "🐕",
+                rating: 4.9,
+                reviews: 312,
+                inStock: true,
+                stockCount: 7
+            },
+            {
+                id: 7,
+                name: "Raw Cat Food - Chicken & Turkey",
+                description: "Flash-frozen raw food with premium proteins. Natural nutrition for optimal health.",
+                price: 67.99,
+                originalPrice: 79.99,
+                category: "cats",
+                type: "raw",
+                sustainability: ["carbon-neutral", "zero-waste"],
+                icon: "🐱",
+                rating: 4.7,
+                reviews: 89,
+                inStock: true,
+                stockCount: 12
+            },
+            {
+                id: 8,
+                name: "Puppy Training Treats - Organic",
+                description: "Small, soft treats perfect for training. Made with organic ingredients and no artificial colors.",
+                price: 19.99,
+                originalPrice: 24.99,
+                category: "dogs",
+                type: "organic",
+                sustainability: ["recycled-pack", "carbon-neutral", "zero-waste"],
+                icon: "🦴",
+                rating: 4.8,
+                reviews: 156,
+                inStock: true,
+                stockCount: 28
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let filteredProducts = [...products];
+        let currentPage = 1;
+        const itemsPerPage = 6;
+
+        // DOM Elements
+        const cartBtn = document.getElementById('cartBtn');
+        const cartCount = document.getElementById('cartCount');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profilePanel = document.getElementById('profilePanel');
+        const closeProfile = document.getElementById('closeProfile');
+        const productGrid = document.getElementById('productGrid');
+        const globalSearch = document.getElementById('globalSearch');
+        const globalSearchBtn = document.getElementById('globalSearchBtn');
+        const sortSelect = document.getElementById('sortSelect');
+        const priceRange = document.getElementById('priceRange');
+        const maxPrice = document.getElementById('maxPrice');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            updateCartDisplay();
+            setupEventListeners();
+            setupMegaMenu();
+            setupFilters();
+        });
+
+        // Event Listeners Setup
+        function setupEventListeners() {
+            // Cart functionality
+            cartBtn.addEventListener('click', () => cartSidebar.classList.add('open'));
+            closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
+
+            // Profile functionality
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('show');
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!profileDropdown.contains(e.target) && !profileBtn.contains(e.target)) {
+                    profileDropdown.classList.remove('show');
+                }
+            });
+
+            // Profile panel
+            document.querySelector('#profileDropdown .dropdown-item').addEventListener('click', (e) => {
+                e.preventDefault();
+                profilePanel.classList.add('open');
+                profileDropdown.classList.remove('show');
+            });
+
+            closeProfile.addEventListener('click', () => profilePanel.classList.remove('open'));
+
+            // Search functionality
+            globalSearchBtn.addEventListener('click', performSearch);
+            globalSearch.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+
+            // Sort functionality
+            sortSelect.addEventListener('change', sortProducts);
+
+            // Price range
+            priceRange.addEventListener('input', updatePriceFilter);
+
+            // Newsletter
+            document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for subscribing to our eco-community!');
+            });
+        }
+
+        // Mega Menu Setup
+        function setupMegaMenu() {
+            const shopLink = document.querySelector('[data-menu="shop"]');
+            const megaMenu = document.getElementById('shopMegaMenu');
+
+            shopLink.addEventListener('mouseenter', () => {
+                megaMenu.classList.add('show');
+            });
+
+            shopLink.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!megaMenu.matches(':hover')) {
+                        megaMenu.classList.remove('show');
+                    }
+                }, 100);
+            });
+
+            megaMenu.addEventListener('mouseleave', () => {
+                megaMenu.classList.remove('show');
+            });
+        }
+
+        // Filter Setup
+        function setupFilters() {
+            const filterCheckboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+        }
+
+        // Product Rendering
+        function renderProducts() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
+            productGrid.innerHTML = '';
+
+            paginatedProducts.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.style.animationDelay = `${index * 0.1}s`;
+
+                const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        ${product.icon}
+                        <div class="stock-badge ${product.inStock ? 'in-stock' : 'out-of-stock'}">
+                            ${product.inStock ? `In Stock (${product.stockCount})` : 'Out of Stock'}
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-rating">
+                            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '☆' : ''}</span>
+                            <span class="rating-text">${product.rating} (${product.reviews} reviews)</span>
+                        </div>
+                        <div class="product-price">
+                            ${product.price}
+                            ${product.originalPrice ? `<span style="text-decoration: line-through; color: #b0c4de; font-size: 0.9rem; margin-left: 0.5rem;">${product.originalPrice}</span>` : ''}
+                            ${discountPercent > 0 ? `<span style="background: #00D084; color: #1a2744; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; margin-left: 0.5rem;">${discountPercent}% OFF</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})" ${!product.inStock ? 'disabled' : ''}>
+                                ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                            </button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(${product.id})" title="Add to Wishlist">
+                                ${wishlist.includes(product.id) ? '❤️' : '🤍'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Search Functionality
+        function performSearch() {
+            const query = globalSearch.value.toLowerCase().trim();
+            if (query) {
+                filteredProducts = products.filter(product =>
+                    product.name.toLowerCase().includes(query) ||
+                    product.description.toLowerCase().includes(query) ||
+                    product.category.toLowerCase().includes(query)
+                );
+            } else {
+                filteredProducts = [...products];
+            }
+            currentPage = 1;
+            renderProducts();
+        }
+
+        // Sort Products
+        function sortProducts() {
+            const sortValue = sortSelect.value;
+            
+            switch(sortValue) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    filteredProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'newest':
+                    filteredProducts.sort((a, b) => b.id - a.id);
+                    break;
+                default:
+                    // Featured - keep original order
+                    break;
+            }
+            renderProducts();
+        }
+
+        // Apply Filters
+        function applyFilters() {
+            const selectedPetTypes = Array.from(document.querySelectorAll('#dogs, #cats, #birds'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.id);
+            
+            const selectedFoodTypes = Array.from(document.querySelectorAll('#organic, #grain-free, #raw'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.id.replace('-', ''));
+
+            const selectedSustainability = Array.from(document.querySelectorAll('#recycled-pack, #carbon-neutral, #zero-waste'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.id.replace('-', ''));
+
+            const maxPriceValue = parseFloat(priceRange.value);
+
+            filteredProducts = products.filter(product => {
+                const petTypeMatch = selectedPetTypes.length === 0 || selectedPetTypes.includes(product.category);
+                const foodTypeMatch = selectedFoodTypes.length === 0 || selectedFoodTypes.includes(product.type);
+                const sustainabilityMatch = selectedSustainability.length === 0 || 
+                    selectedSustainability.some(s => product.sustainability.includes(s.replace('', '-')));
+                const priceMatch = product.price <= maxPriceValue;
+
+                return petTypeMatch && foodTypeMatch && sustainabilityMatch && priceMatch;
+            });
+
+            currentPage = 1;
+            renderProducts();
+        }
+
+        // Price Filter Update
+        function updatePriceFilter() {
+            maxPrice.textContent = `${priceRange.value}`;
+            applyFilters();
+        }
+
+        // Cart Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product || !product.inStock) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartDisplay();
+            showAddToCartFeedback(event.target);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function updateCartDisplay() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems; }
