@@ -1,9 +1,3 @@
-
-
-
-
-
-
 // Modal functionality
 const loginModal = document.getElementById('loginModal');
 const loginBtns = [document.getElementById('loginBtn'), document.getElementById('mobileLoginBtn')];
@@ -38,7 +32,7 @@ window.addEventListener('click', function(e) {
     if (e.target === loginModal) {
         loginModal.classList.remove('active');
         document.body.style.overflow = 'auto';
-    }   
+    }
 });
 
 // Switch between login and signup
@@ -113,17 +107,17 @@ backToLoginLink.addEventListener('click', (e) => {
 //     e.preventDefault();
 //     const submitBtn = document.getElementById('loginSubmit');
 //     const successMsg = document.getElementById('loginSuccess');
-    
+
 //     // Show loading state
 //     submitBtn.classList.add('btn-loading');
 //     submitBtn.disabled = true;
-    
+
 //     // Simulate API call
 //     setTimeout(() => {
 //         submitBtn.classList.remove('btn-loading');
 //         submitBtn.disabled = false;
 //         successMsg.classList.add('show');
-        
+
 //         // Hide success message and close modal after 2 seconds
 //         setTimeout(() => {
 //             successMsg.classList.remove('show');
@@ -173,8 +167,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAxdG2gR47_uDbHjh-IorBhYrswY0WJP98",
     authDomain: "ploop-web.firebaseapp.com",
@@ -186,48 +180,48 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig); 
+const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider(app);
 const facebookProvider = new FacebookAuthProvider();
 
 // LOGIN FORM HANDLER
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-e.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-const email = document.getElementById('loginEmail').value;
-const password = document.getElementById('loginPassword').value;
-const submitBtn = document.getElementById('loginSubmit');
-const successMsg = document.getElementById('loginSuccess');
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const submitBtn = document.getElementById('loginSubmit');
+    const successMsg = document.getElementById('loginSuccess');
 
-submitBtn.classList.add('btn-loading');
-submitBtn.disabled = true;
+    submitBtn.classList.add('btn-loading');
+    submitBtn.disabled = true;
 
-try {
-    await signInWithEmailAndPassword(auth, email, password);
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
 
-    submitBtn.classList.remove('btn-loading');
-    submitBtn.disabled = false;
-    successMsg.classList.add('show');
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+        successMsg.classList.add('show');
 
-    setTimeout(() => {
-    successMsg.classList.remove('show');
-    document.getElementById('loginModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    this.reset();
-    window.location.href = "test.html";
-    }, 
-    1000);
+        setTimeout(() => {
+                successMsg.classList.remove('show');
+                document.getElementById('loginModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+                this.reset();
+                window.location.href = "test.html";
+            },
+            1000);
     } catch (error) {
         submitBtn.classList.remove('btn-loading');
         submitBtn.disabled = false;
         alert("❌ " + error.message);
     }
-    });
+});
 
-    // Monitor user state
-    onAuthStateChanged(auth, (user) => {
+// Monitor user state
+onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("✅ Logged in:", user.email);
     } else {
@@ -239,48 +233,48 @@ try {
 // //Google Sign-Up Handler
 // document.getElementById('googleSignup').addEventListener('click', async function (e) {
 //     e.preventDefault();
-    
+
 //     const googleBtn = document.getElementById('googleSignup');
 //     const successMsg = document.getElementById('signupSuccess');
-    
+
 //     // Add loading state to Google button
 //     const originalText = googleBtn.innerHTML;
 //     googleBtn.innerHTML = '<span>⏳</span> Signing up with Google...';
 //     googleBtn.disabled = true;
-    
+
 //     try {
 //         const result = await signInWithPopup(auth, googleProvider);
 //         const user = result.user;
-        
+
 //         console.log("Google signup successful:", user.uid);
 //         console.log("User info:", {
 //             name: user.displayName,
 //             email: user.email,
 //             photoURL: user.photoURL
 //         });
-        
+
 //         // Show success message
 //         successMsg.textContent = `Welcome ${user.displayName}! Account created successfully! 🎉`;
 //         successMsg.classList.add('show');
-        
+
 //         // Reset button
 //         googleBtn.innerHTML = originalText;
 //         googleBtn.disabled = false;
-        
+
 //         setTimeout(() => {
 //             successMsg.classList.remove('show');
 //             document.getElementById('signupModal').classList.remove('active');
 //             document.body.style.overflow = 'auto';
 //             window.location.href = "test.html";
 //         }, 1000);
-        
+
 //     } catch (error) {
 //         // Reset button on error
 //         googleBtn.innerHTML = originalText;
 //         googleBtn.disabled = false;
-        
+
 //         console.error("Google signup error:", error.code, error.message);
-        
+
 //         // Handle specific error cases
 //         if (error.code === 'auth/popup-closed-by-user') {
 //             alert("❌ Sign-up cancelled. Please try again.");
@@ -295,21 +289,21 @@ try {
 // });
 
 // Google Sign-In Handler for Login
-document.getElementById('googleLogin').addEventListener('click', async function (e) {
+document.getElementById('googleLogin').addEventListener('click', async function(e) {
     e.preventDefault();
-    
+
     const googleBtn = document.getElementById('googleLogin');
     const successMsg = document.getElementById('loginSuccess'); // Assuming you have a success message for login
-    
+
     // Add loading state to Google button
     const originalText = googleBtn.innerHTML;
     googleBtn.innerHTML = '<span>⏳</span> Signing in with Google...';
     googleBtn.disabled = true;
-    
+
     try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
-        
+
         console.log("Google signin successful:", user.uid);
         console.log("User info:", {
             name: user.displayName,
@@ -317,10 +311,11 @@ document.getElementById('googleLogin').addEventListener('click', async function 
             photoURL: user.photoURL,
             lastSignInTime: user.metadata.lastSignInTime
         });
-        
+
         // Check if this is a new user or returning user
-        const isNewUser = result._tokenResponse?.isNewUser || false;
-        
+        // prettier-ignore
+        const isNewUser = result._tokenResponse ?.isNewUser || false;
+
         // Show appropriate success message
         if (successMsg) {
             if (isNewUser) {
@@ -330,11 +325,11 @@ document.getElementById('googleLogin').addEventListener('click', async function 
             }
             successMsg.classList.add('show');
         }
-        
+
         // Reset button
         googleBtn.innerHTML = originalText;
         googleBtn.disabled = false;
-        
+
         setTimeout(() => {
             if (successMsg) {
                 successMsg.classList.remove('show');
@@ -343,14 +338,14 @@ document.getElementById('googleLogin').addEventListener('click', async function 
             document.body.style.overflow = 'auto';
             window.location.href = "test.html";
         }, 1000);
-        
+
     } catch (error) {
         // Reset button on error
         googleBtn.innerHTML = originalText;
         googleBtn.disabled = false;
-        
+
         console.error("Google signin error:", error.code, error.message);
-        
+
         // Handle specific error cases
         if (error.code === 'auth/popup-closed-by-user') {
             alert("❌ Sign-in cancelled. Please try again.");
@@ -369,21 +364,21 @@ document.getElementById('googleLogin').addEventListener('click', async function 
 
 
 // FACEBOOK SIGN-IN HANDLER (for login modal)
-document.getElementById('facebookLogin').addEventListener('click', async function (e) {
+document.getElementById('facebookLogin').addEventListener('click', async function(e) {
     e.preventDefault();
-    
+
     const facebookBtn = document.getElementById('facebookLogin');
     const successMsg = document.getElementById('loginSuccess'); // Assuming you have this in your login modal
-    
+
     // Add loading state to Facebook button
     const originalText = facebookBtn.innerHTML;
     facebookBtn.innerHTML = '<span>⏳</span> Signing in with Facebook...';
     facebookBtn.disabled = true;
-    
+
     try {
         const result = await signInWithPopup(auth, facebookProvider);
         const user = result.user;
-        
+
         console.log("Facebook signin successful:", user.uid);
         console.log("User info:", {
             name: user.displayName,
@@ -391,10 +386,10 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
             photoURL: user.photoURL,
             lastSignInTime: user.metadata.lastSignInTime
         });
-        
+
         // Check if this is a new user or returning user
-        const isNewUser = result._tokenResponse?.isNewUser || false;
-        
+        const isNewUser = result._tokenResponse ?.isNewUser || false;
+
         // Show appropriate success message
         if (successMsg) {
             if (isNewUser) {
@@ -404,11 +399,11 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
             }
             successMsg.classList.add('show');
         }
-        
+
         // Reset button
         facebookBtn.innerHTML = originalText;
         facebookBtn.disabled = false;
-        
+
         setTimeout(() => {
             if (successMsg) {
                 successMsg.classList.remove('show');
@@ -417,14 +412,14 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
             document.body.style.overflow = 'auto';
             window.location.href = "test.html";
         }, 1000);
-        
+
     } catch (error) {
         // Reset button on error
         facebookBtn.innerHTML = originalText;
         facebookBtn.disabled = false;
-        
+
         console.error("Facebook signin error:", error.code, error.message);
-        
+
         // Handle specific error cases
         if (error.code === 'auth/popup-closed-by-user') {
             alert("❌ Sign-in cancelled. Please try again.");
@@ -441,42 +436,42 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
         }
     }
 });
-    // // Reset password functionality
-    // const email = document.getElementById("resetEmail").value;
-    // const successMsgReset = document.getElementById('resetpassMessage');
-    // const resetBtn = document.getElementById("resetBtn");
-    // const resetEmailInput = document.getElementById("resetEmail");
-    // const resetModal = document.getElementById("resetModal");
-    // const backToLoginLink = document.getElementById("backToLogin");
-    // resetBtn.addEventListener("click", () => {
-        
-    // console.log("Clicked. Email:", email);
-    
-    
-    // if (!email) {
-    //     resetMessage.textContent = "Please enter your email.";
-    //     resetMessage.style.color = "orange";
-    //     return;
-    // }
+// // Reset password functionality
+// const email = document.getElementById("resetEmail").value;
+// const successMsgReset = document.getElementById('resetpassMessage');
+// const resetBtn = document.getElementById("resetBtn");
+// const resetEmailInput = document.getElementById("resetEmail");
+// const resetModal = document.getElementById("resetModal");
+// const backToLoginLink = document.getElementById("backToLogin");
+// resetBtn.addEventListener("click", () => {
 
-    // sendPasswordResetEmail(auth, email)
-    // .then(() => {
-    //     console.log("Password reset email sent!");
-    //     successMsgReset.classList.add('show');
-    //     successMsgReset.style.color = "#0CAF78";
-    // })
-    // .catch((error) => {
-    //     console.error("Password reset error:", error);
-    //     resetMessage.textContent = "Error: " + error.message;
-    //     resetMessage.style.color = "red";
-    // });
-    // });
-    const resetMessagepass = document.getElementById("resetpasseMessage");
-    const email = document.getElementById("resetEmail").value;
-    const resetBtn = document.getElementById("resetBtn");
+// console.log("Clicked. Email:", email);
 
 
-    resetBtn.addEventListener("click", () => {
+// if (!email) {
+//     resetMessage.textContent = "Please enter your email.";
+//     resetMessage.style.color = "orange";
+//     return;
+// }
+
+// sendPasswordResetEmail(auth, email)
+// .then(() => {
+//     console.log("Password reset email sent!");
+//     successMsgReset.classList.add('show');
+//     successMsgReset.style.color = "#0CAF78";
+// })
+// .catch((error) => {
+//     console.error("Password reset error:", error);
+//     resetMessage.textContent = "Error: " + error.message;
+//     resetMessage.style.color = "red";
+// });
+// });
+const resetMessagepass = document.getElementById("resetpasseMessage");
+const email = document.getElementById("resetEmail").value;
+const resetBtn = document.getElementById("resetBtn");
+
+
+resetBtn.addEventListener("click", () => {
     const email = document.getElementById("resetEmail").value.trim();
     console.log("Clicked. Email:", email);
 
@@ -509,11 +504,11 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
 
 
 
-    // resetBtn.addEventListener("click", () => {     
-    // console.log("Clicked. Email:", email);
+// resetBtn.addEventListener("click", () => {     
+// console.log("Clicked. Email:", email);
 
 
-    // resetMessagepass.textContent = "Reset email sent successfully!"; // Add your message
-    // resetMessagepass.classList.add("show");
-    
-    // });
+// resetMessagepass.textContent = "Reset email sent successfully!"; // Add your message
+// resetMessagepass.classList.add("show");
+
+// });
