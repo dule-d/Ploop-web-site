@@ -1,3 +1,13 @@
+
+
+
+
+// const nextpage = "Pages/Store.html"
+
+
+
+
+
 // Modal functionality
 const loginModal = document.getElementById('loginModal');
 const loginBtns = [document.getElementById('loginBtn'), document.getElementById('mobileLoginBtn')];
@@ -186,7 +196,6 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider(app);
 const facebookProvider = new FacebookAuthProvider();
 
-const nextpage = "Pages/Store.html"
 
 // LOGIN FORM HANDLER
 document.getElementById('loginForm').addEventListener('submit', async function(e) {

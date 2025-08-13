@@ -15,6 +15,12 @@ line-height: 1.6;
 overflow-x: hidden;
 }
 
+/* Light Theme (when body has .light-theme class) */
+body.light-theme {
+  background: linear-gradient(135deg, #B1BCE2 0%, #96AACA 100%);
+  color: #0f172a;
+}
+
 .container {
 max-width: 1200px;
 margin: 0 auto;
@@ -87,6 +93,11 @@ z-index: 1000;
 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+
+body.light-theme header {
+  background: #768EB7
+}
+
 nav {
 display: flex;
 justify-content: space-between;
@@ -103,6 +114,7 @@ background: linear-gradient(45deg, #10b981, #059669);
 -webkit-text-fill-color: transparent;
 background-clip: text;
 }
+
 
 .nav-links {
 display: flex;
@@ -1133,3 +1145,262 @@ animation: fadeIn 0.3s ease;
     text-shadow: 0 0 8px #6e7b8f;  /* Glow effect */
     transform: scale(1.05);  
 }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Light Theme Styles */
+body.light-theme {
+  background: linear-gradient(135deg, #B1BCE2 0%, #96AACA 100%);
+  color: #0f172a;
+}
+
+/* Light Theme Header */
+body.light-theme header {
+  background: rgba(177, 188, 226, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Light Theme Navigation */
+body.light-theme .nav-links a {
+  color: #475569;
+}
+
+body.light-theme .nav-links a:hover {
+  color: #10b981;
+}
+
+/* Light Theme Hero Section */
+body.light-theme .hero h1 {
+  background: linear-gradient(45deg, #0f172a, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-theme .hero p {
+  color: #475569;
+}
+
+body.light-theme .secondary-btn {
+  background: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+}
+
+body.light-theme .secondary-btn:hover {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+body.light-theme .stat-label {
+  color: #475569;
+}
+
+/* Light Theme Pet Card */
+body.light-theme .pet-card {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .floating-element {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+/* Light Theme Process Section */
+body.light-theme .process {
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .process h2 {
+  background: linear-gradient(45deg, #0f172a, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-theme .process-subtitle {
+  color: #475569;
+}
+
+body.light-theme .process-step h3 {
+  color: #0f172a;
+}
+
+body.light-theme .process-step p {
+  color: #475569;
+}
+
+/* Light Theme Features Section */
+body.light-theme .features h2 {
+  background: linear-gradient(45deg, #0f172a, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-theme .feature-card {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .feature-card h3 {
+  color: #0f172a;
+}
+
+body.light-theme .feature-card p {
+  color: #475569;
+}
+
+/* Light Theme Contact Section */
+body.light-theme .contact-con h2 {
+  background: linear-gradient(45deg, #0f172a, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-theme .contact-con p {
+  color: #475569;
+}
+
+/* Light Theme CTA Section */
+body.light-theme .final-cta {
+  background: linear-gradient(45deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+body.light-theme .final-cta h2 {
+  background: linear-gradient(45deg, #0f172a, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-theme .final-cta p {
+  color: #475569;
+}
+
+/* Light Theme Footer */
+body.light-theme footer {
+  background: rgba(177, 188, 226, 0.9);
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .footer-section p,
+body.light-theme .footer-section a,
+body.light-theme .footer-section-company p,
+body.light-theme .footer-section-company a {
+  color: #475569;
+}
+
+body.light-theme .footer-bottom {
+  color: #64748b;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+/* Light Theme Modal */
+body.light-theme .modal {
+  background-color: rgba(177, 188, 226, 0.7);
+}
+
+body.light-theme .modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .modal-header h2 {
+  color: #0f172a;
+}
+
+body.light-theme .modal-header p {
+  color: #475569;
+}
+
+body.light-theme .close-btn {
+  color: #475569;
+}
+
+body.light-theme .close-btn:hover {
+  color: #0f172a;
+}
+
+body.light-theme .form-group label {
+  color: #0f172a;
+}
+
+body.light-theme .form-group input {
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  background: rgba(255, 255, 255, 0.5);
+  color: #0f172a;
+}
+
+body.light-theme .form-group input::placeholder {
+  color: #64748b;
+}
+
+body.light-theme .form-divider {
+  color: #64748b;
+}
+
+body.light-theme .form-divider span {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+body.light-theme .social-btn {
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  background: rgba(255, 255, 255, 0.3);
+  color: #0f172a;
+}
+
+body.light-theme .social-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+body.light-theme .switch-form {
+  color: #475569;
+}
+
+body.light-theme .resetPass a {
+  color: #64748b;
+}
+
+body.light-theme .resetPass a:hover {
+  color: #475569;
+}
+
+/* Light Theme Mobile Menu */
+body.light-theme .mobile-menu {
+  background: rgba(177, 188, 226, 0.95);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .mobile-menu a {
+  color: #475569;
+}
+
+body.light-theme .mobile-menu a:hover {
+  background: rgba(16, 185, 129, 0.05);
+  color: #10b981;
+}
+
+/* Light Theme Floating Shapes */
+body.light-theme .floating-shape {
+  opacity: 0.05;
+}
+
+/* Light Theme Success Messages */
+body.light-theme .success-message-password {
+  color: #475569;
+  text-shadow: 0 5px 20px rgba(71, 85, 105, 0.3);
+}

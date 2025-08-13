@@ -9,6 +9,7 @@
     <link rel="icon" href="Photos/Logo 3 transparent 2.png" type="image/x-icon">
 
     <script type="module" src="style.js" defer></script>
+
     <!-- <script type="module" src="Firebase Log in - Sign up/login.js" defer></script>
     <script type="module" src="Firebase Log in - Sign up/signup.js"defer></script> -->
 
@@ -29,6 +30,7 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="#" class="cta-btn" id="loginBtn">Log In</a></li>
                 <li><a href="#" class="cta-btn" id="signupBtn">Sign Up</a></li>
+                <button class="cta-btn" id="themeToggle">☀️ Light Mode</button>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
@@ -367,6 +369,31 @@
     });
 }   
 
+
+
+
+
+
+
+// theme changer
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('themeToggle');
+  
+  // Check for saved preference
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+    themeToggle.textContent = '☀️ Light Mode';
+  }
+
+  // Toggle theme
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    
+    const isLight = document.body.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    themeToggle.textContent = isLight ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+});
     </script>
 
 
@@ -374,6 +401,5 @@
 
     <script type="module" src="Firebase Log in - Sign up/login.js" defer></script>
     <script type="module" src="Firebase Log in - Sign up/signup.js"defer></script>
-
 </body>
 </html>
