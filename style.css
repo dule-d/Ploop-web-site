@@ -166,6 +166,18 @@ transform: translateY(-2px);
 box-shadow: 0 6px 30px rgba(16, 185, 129, 0.4);
 }
 
+.cta-btn-theme{
+  background: linear-gradient(45deg, #10b981, #059669);
+  margin-bottom: -5px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+
 /* Hero Section */
 .hero {
 padding: 140px 0 80px;
