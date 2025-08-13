@@ -8,7 +8,9 @@
 
     <link rel="stylesheet" href="Store.css">
     <script type="module" src="Store.js" defer></script>
+    <script type="module" src="data.js" defer></script>
 
+    
     <link rel="icon" href="Logo 3 transparent 2.png" type="image/x-icon">
 
 </head>
@@ -35,7 +37,7 @@
             </div>
             <ul class="nav-links">
                 <!-- <li><a href="#home">Home</a></li> -->
-                <li><a href="#categories">Categories</a></li>
+                <!-- <li><a href="#categories">Categories</a></li> -->
                 <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
             <div class="nav-icons">
@@ -58,29 +60,29 @@
 
         <div class="profile-section">
             <h3>👤 Account Info</h3>
-            <p>John Doe</p>
-            <p>john.doe@email.com</p>
+            <p></p>
+            <p></p>
         </div>
 
         <div class="profile-section">
             <h3>❤️ Saved Items</h3>
-            <p>• Premium Organic Dog Food</p>
-            <p>• Eco-Friendly Cat Treats</p>
-            <p>• Sustainable Bird Food</p>
+            <p>/</p>
+            <p>/</p>
+            <p>/</p>
         </div>
 
         <div class="profile-section">
             <h3>📦 Recent Orders</h3>
-            <p>Order #12345 - $49.99</p>
-            <p>Order #12344 - $32.50</p>
-            <p>Order #12343 - $67.25</p>
+            <p>/</p>
+            <p>/</p>
+            <p>/</p>
         </div>
 
         <div class="profile-section">
             <h3>⚙️ Preferences</h3>
-            <p>Pet Type: Dogs & Cats</p>
-            <p>Diet: Organic & Natural</p>
-            <p>Delivery: Monthly</p>
+            <p>Pet Type: /</p>
+            <p>Diet: /</p>
+            <p>Delivery: /</p>
         </div>
     </div>
 
@@ -114,7 +116,7 @@
             <button class="search-btn" id="searchBtn">🔍</button>
         </div>
 
-        <!-- Categories -->
+        <!-- Categories
         <div class="categories">
             <button class="category-pill active" data-category="all">All Products</button>
             <button class="category-pill" data-category="dogs">🐕 Dogs</button>
@@ -123,7 +125,45 @@
             <button class="category-pill" data-category="recycled">♻️ Recycled</button>
             <button class="category-pill" data-category="treats">🦴 Treats</button>
         </div>
+
+        <div class="mobile">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div> -->
+                <!-- Category Navigation -->
+        <div class="category-nav">
+            <div class="category-title">
+                <i class="fas fa-filter"></i>
+                <h2>Shop by Animal Type</h2>
+            </div>
+            <div class="category-pills">
+                <div class="category-pill active" data-category="all">All Animals</div>
+                <div class="category-pill" data-category="mammals">Mammals</div>
+                <div class="category-pill" data-category="birds">Birds</div>
+                <div class="category-pill" data-category="aquatic">Aquatic Pets</div>
+                <div class="category-pill" data-category="reptiles">Reptiles</div>
+                <div class="category-pill" data-category="exotic">Exotic Animals</div>
+            </div>
+            
+            <div class="category-title">
+                <i class="fas fa-paw"></i>
+                <h3>Shop by Subcategory</h3>
+            </div>
+            <div class="subcategory-pills">
+                <div class="subcategory-pill active" data-subcategory="all">All</div>
+                <div class="subcategory-pill" data-subcategory="dogs">Dogs</div>
+                <div class="subcategory-pill" data-subcategory="cats">Cats</div>
+                <div class="subcategory-pill" data-subcategory="parrots">Parrots</div>
+                <div class="subcategory-pill" data-subcategory="fish">Fish</div>
+                <div class="subcategory-pill" data-subcategory="lizards">Lizards</div>
+                <div class="subcategory-pill" data-subcategory="hamsters">Hamsters</div>
+            </div>
+        </div>
+
+
     </div>
+
+
+
 
     <!-- Products Section -->
     <section class="products-section">
@@ -139,7 +179,7 @@
     <section class="cta-banner">
         <div class="container">
             <h2>Join the Eco Revolution</h2>
-            <p>Subscribe to our monthly delivery and save 20% while helping save the planet</p>
+            <p>Buy any food worth 10 kg of recycled food and get plantable utensils!!!</p>
             <button class="cta-btn">Start Your Journey</button>
         </div>
     </section>

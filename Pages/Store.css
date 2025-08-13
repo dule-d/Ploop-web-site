@@ -387,6 +387,14 @@ animation-delay: 10s;
     margin-bottom: 1rem;
     line-height: 1.4;
 }
+.product-weight {
+    color: #b0c4de;
+    font-size: 0.98rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: left;
+}
+
 
 .product-price {
     font-size: 1.5rem;
@@ -508,6 +516,155 @@ animation-delay: 10s;
 .product-card:nth-child(4) {
     animation-delay: 0.3s;
 }
+
+
+
+
+.category-tag {
+    background: #e0f7fa;
+    color: #00838f;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.no-results {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px;
+    color: #666;
+}
+
+
+
+
+
+
+
+        :root {
+            --primary: #00D084;
+            --primary-dark: #00b572;
+            --secondary: #4a6fa5;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --accent: #ff6b6b;
+            --dark-theme-bg: #1e293bcd;
+            --dark-theme-pill: #1e293b;
+            --dark-text: #e2e8f0;
+            --dark-bg: #0f172a;
+        }
+        /* Centered Category Navigation */
+        .category-nav {
+            background: var(--dark-theme-bg);
+            border-radius: 50px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+        }
+        
+        body.light-theme .category-nav {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+            
+        .category-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .category-title i {
+            color: var(--primary);
+        }
+        
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        
+        .category-pill {
+            background: var(--dark-theme-pill);
+            color: var(--dark-text);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid transparent;
+        }
+        
+        body.light-theme .category-pill {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        .category-pill:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .category-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Subcategory Pills - Fixed for light theme */
+        .subcategory-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .subcategory-pill {
+            background: var(--dark-theme-pill);
+            color: var(--dark-text);
+            padding: 8px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        body.light-theme .subcategory-pill {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        .subcategory-pill:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Fixed active state for light theme */
+        .subcategory-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        body.light-theme .subcategory-pill.active {
+            background: var(--primary);
+            color: white;
+        }
+
 
 
 
@@ -684,6 +841,11 @@ body.light-theme .product-info h3 {
 body.light-theme .product-description {
     color: #64748b;
 }
+body.light-theme .product-weight {
+    color: #64748b;
+}
+
+
 
 body.light-theme .product-price {
     color: #10b981;
