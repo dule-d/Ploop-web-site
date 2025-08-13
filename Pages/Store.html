@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ploop - Pet Nutrition</title>
+
+    <link rel="stylesheet" href="Store.css">
+    <script type="module" src="Store.js" defer></script>
+
+    <link rel="icon" href="Logo 3 transparent 2.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <body>
+    <div class="bg-animation">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+
+
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Logo 3 transparent 2.png" style="width: 50px; height: auto; margin-bottom: 5px;"/> Ploop
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <button class="icon-btn" id="profileBtn">👤</button>
+                <button class="icon-btn" id="cartBtn">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Profile Panel -->
+    <div class="profile-panel" id="profilePanel">
+        <div class="profile-header">
+            <h2>Your Profile</h2>
+            <button class="close-btn" id="closeProfile">✕</button>
+        </div>
+
+        <div class="profile-section">
+            <h3>👤 Account Info</h3>
+            <p>John Doe</p>
+            <p>john.doe@email.com</p>
+        </div>
+
+        <div class="profile-section">
+            <h3>❤️ Saved Items</h3>
+            <p>• Premium Organic Dog Food</p>
+            <p>• Eco-Friendly Cat Treats</p>
+            <p>• Sustainable Bird Food</p>
+        </div>
+
+        <div class="profile-section">
+            <h3>📦 Recent Orders</h3>
+            <p>Order #12345 - $49.99</p>
+            <p>Order #12344 - $32.50</p>
+            <p>Order #12343 - $67.25</p>
+        </div>
+
+        <div class="profile-section">
+            <h3>⚙️ Preferences</h3>
+            <p>Pet Type: Dogs & Cats</p>
+            <p>Diet: Organic & Natural</p>
+            <p>Delivery: Monthly</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Nourish Your Pet. Heal the Planet.</h1>
+            <p>Premium eco-friendly pet nutrition that's good for your furry friends and Mother Earth</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">Waste Reduced</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Organic</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Pets</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search for premium pet food..." id="searchInput">
+            <button class="search-btn" id="searchBtn">🔍</button>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-pill active" data-category="all">All Products</button>
+            <button class="category-pill" data-category="dogs">🐕 Dogs</button>
+            <button class="category-pill" data-category="cats">🐱 Cats</button>
+            <button class="category-pill" data-category="organic">🌱 Organic</button>
+            <button class="category-pill" data-category="recycled">♻️ Recycled</button>
+            <button class="category-pill" data-category="treats">🦴 Treats</button>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Join the Eco Revolution</h2>
+            <p>Subscribe to our monthly delivery and save 20% while helping save the planet</p>
+            <button class="cta-btn">Start Your Journey</button>
+        </div>
+    </section>
+</body>
+
+
+
+
+
+    <script>
+
+    // Trigger counter animation when stats section is visible
+    const statsSection = document.querySelector('.stats');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    observer.observe(statsSection);
+
+    // Statistics counter animation
+    function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const target = counter.textContent;
+        const numTarget = parseInt(target.replace(/[^0-9]/g, ''));
+        const suffix = target.replace(/[0-9]/g, '');
+        let current = 0;
+        const increment = numTarget / 100;
+        
+        const updateCounter = () => {
+            if (current < numTarget) {
+                current += increment;
+                counter.textContent = Math.floor(current) + suffix;
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        
+        updateCounter();
+    });
+}   
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</html>

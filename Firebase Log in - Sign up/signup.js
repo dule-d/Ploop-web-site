@@ -3,7 +3,7 @@
 
 
 
-
+const nextpage = "Pages/Store.html"
 
 
 // Modal functionality
@@ -152,7 +152,7 @@ try {
         document.getElementById('signupModal').classList.remove('active');
         document.body.style.overflow = 'auto';
         document.getElementById('signupForm').reset();
-        window.location.href = "test.html";
+        window.location.href = nextpage;
     }, 
     1000);
     } catch (error) {
@@ -198,7 +198,7 @@ document.getElementById('googleSignup').addEventListener('click', async function
             successMsg.classList.remove('show');
             document.getElementById('signupModal').classList.remove('active');
             document.body.style.overflow = 'auto';
-            window.location.href = "test.html";
+            window.location.href = nextpage;
         }, 1000);
         
     } catch (error) {
@@ -256,7 +256,7 @@ document.getElementById('facebookSignup').addEventListener('click', async functi
             successMsg.classList.remove('show');
             document.getElementById('signupModal').classList.remove('active');
             document.body.style.overflow = 'auto';
-            window.location.href = "test.html";
+            window.location.href = nextpage;
         }, 1000);
         
     } catch (error) {

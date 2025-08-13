@@ -186,6 +186,8 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider(app);
 const facebookProvider = new FacebookAuthProvider();
 
+const nextpage = "Pages/Store.html"
+
 // LOGIN FORM HANDLER
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -224,6 +226,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("✅ Logged in:", user.email);
+        window.location.href = nextpage;
     } else {
         console.log("🚪 Logged out");
     }
@@ -336,7 +339,7 @@ document.getElementById('googleLogin').addEventListener('click', async function(
             }
             document.getElementById('loginModal').classList.remove('active'); // Assuming your login modal has id 'loginModal'
             document.body.style.overflow = 'auto';
-            window.location.href = "test.html";
+            window.location.href = nextpage;
         }, 1000);
 
     } catch (error) {
@@ -410,7 +413,7 @@ document.getElementById('facebookLogin').addEventListener('click', async functio
             }
             document.getElementById('loginModal').classList.remove('active');
             document.body.style.overflow = 'auto';
-            window.location.href = "test.html";
+            window.location.href = nextpage;
         }, 1000);
 
     } catch (error) {
