@@ -23,14 +23,17 @@
 
     <header>
         <nav class="container">
+            
+            
             <div class="logo"> <img src="Photos/Logo 3 transparent 2.png" style="width: 50px; height: auto; margin-bottom: -10px;"/> Ploop</div>
+            <button class="cta-btn" id="themeToggle">🌙</button>
             <ul class="nav-links">
                     <li><a href="#process" class="nav-link">Our Process</a></li>
                     <li><a href="#features" class="nav-link">Features</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="#" class="cta-btn" id="loginBtn">Log In</a></li>
                 <li><a href="#" class="cta-btn" id="signupBtn">Sign Up</a></li>
-                <button class="cta-btn" id="themeToggle">☀️ Light Mode</button>
+                
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
@@ -41,7 +44,7 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="#" id="mobileLoginBtn">Log In</a></li>
                 <li><a href="#" id="mobileSignupBtn">Sign Up</a></li>
-                <button class="cta-btn" id="themeToggle">☀️ Light Mode</button>
+                
             </ul>
         </div>
     </header>
@@ -383,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Check for saved preference
   if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light-theme');
-    themeToggle.textContent = '☀️ Light Mode';
+    themeToggle.textContent = '☀️';
   }
 
   // Toggle theme
@@ -392,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const isLight = document.body.classList.contains('light-theme');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    themeToggle.textContent = isLight ? '☀️ Light Mode' : '🌙 Dark Mode';
+    themeToggle.textContent = isLight ? '☀️' : '🌙';
   });
 });
     </script>
