@@ -2,7 +2,7 @@
 
 
 
-// const nextpage = "Pages/Store.html"
+const nextpage = "Pages/Store.html"
 
 
 

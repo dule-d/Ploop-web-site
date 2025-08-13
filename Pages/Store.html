@@ -34,9 +34,9 @@
                 <img src="Logo 3 transparent 2.png" style="width: 50px; height: auto; margin-bottom: 5px;"/> Ploop
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <!-- <li><a href="#home">Home</a></li> -->
                 <li><a href="#categories">Categories</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
             <div class="nav-icons">
                 <button class="icon-btn" id="profileBtn">👤</button>
@@ -44,6 +44,7 @@
                     🛒
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
+                <button class="icon-btn" id="themeToggle">🌙</button>
             </div>
         </div>
     </nav>
@@ -148,6 +149,12 @@
 
 
 
+
+
+
+
+
+
     <script>
 
     // Trigger counter animation when stats section is visible
@@ -186,6 +193,29 @@
         updateCounter();
     });
 }   
+
+
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Check for saved preference
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-theme');
+        themeToggle.textContent = '☀️';
+    }
+
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        themeToggle.textContent = isLight ? '☀️' : '🌙';
+    });
+    });
 
     </script>
 
