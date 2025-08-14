@@ -365,7 +365,7 @@ animation-delay: 10s;
 .product-image {
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, #00D084 0%, #00b572 100%);
+    background: linear-gradient(135deg, #00D084 0%, #00b573ca 100%);
     border-radius: 10px;
     margin-bottom: 1rem;
     display: flex;
@@ -374,6 +374,8 @@ animation-delay: 10s;
     font-size: 3rem;
     color: #1a2744;
 }
+
+
 
 .product-info h3 {
     color: #ffffff;
@@ -557,6 +559,8 @@ animation-delay: 10s;
             --dark-text: #e2e8f0;
             --dark-bg: #0f172a;
         }
+
+        
         /* Centered Category Navigation */
         .category-nav {
             background: var(--dark-theme-bg);
@@ -890,4 +894,58 @@ body.light-theme .cta-btn:hover {
     body.light-theme .cta-banner h2 {
         font-size: 1.8rem;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Base Icon Button Style */
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* Log Out Button Specific Style */
+#LogOut {
+  background-color: #f8f9fa;
+  color: #d11a2a;
+  border: 1px solid #e0e0e0;
+}
+
+#LogOut:hover {
+  background-color: #ffecec;
+  border-color: #ffb3b3;
+}
+
+#LogOut:active {
+  background-color: #ffdddd;
+  transform: scale(0.98);
+}
+
+/* Optional: Add a logout icon using pseudo-element */
+#LogOut::before {
+  content: "→"; /* Simple arrow */
+  /* Alternative: Use SVG background for actual icon */
+  /* background: url('logout-icon.svg') no-repeat center; */
+  display: inline-block;
+  transform: rotate(180deg);
+  font-size: 16px;
 }

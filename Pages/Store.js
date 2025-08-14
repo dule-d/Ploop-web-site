@@ -224,3 +224,46 @@
 
         // Initialize floating elements
         createFloatingElements();
+
+
+
+
+
+
+
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAxdG2gR47_uDbHjh-IorBhYrswY0WJP98",
+    authDomain: "ploop-web.firebaseapp.com",
+    projectId: "ploop-web",
+    storageBucket: "ploop-web.firebasestorage.app",
+    messagingSenderId: "524020814129",
+    appId: "1:524020814129:web:d48f31e3179cd17c792010",
+    measurementId: "G-DL3C6ZP9JT"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app); // Make sure to pass the app instance
+
+// Get the logout button
+const logoutButton = document.getElementById('LogOut');
+
+// Add logout functionality
+logoutButton.addEventListener('click', () => {
+    signOut(auth).then(() => {
+        // Sign-out successful
+        console.log("User signed out");
+        window.location.href = '../index.html'; // Redirect to index.html
+    }).catch((error) => {
+        console.error("Sign out error:", error);
+    });
+});
