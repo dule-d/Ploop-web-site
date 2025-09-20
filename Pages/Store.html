@@ -173,8 +173,211 @@
             <button class="cta-btn">Start Your Journey</button>
         </div>
     </section>
-</body>
 
+
+
+
+
+
+
+<!-- /fake door test -->
+
+<div class="popout-fakedor" id="emailPopout" style="display: none;">
+  <button id="closePopout" class="close-btn">&times;</button>
+  <h3>Stay Updated!</h3>
+  <p>We're currently out of stock on this food item. <br>
+    Enter your email below, and we'll notify you as soon as it's back! <br>
+    Thank you for your patience and understanding.</p>
+  <input type="email" id="subscribeEmail" placeholder="Your email address">
+  <button id="subscribeBtn">Subscribe</button>
+</div>
+
+<div id="thankYouToast" class="thank-you-toast">💌 Thank you for the understanding.</div>
+
+
+
+<!-- <style>
+:root {
+  --primary-p: #00c67c;        /* Slightly deeper green */
+  --primary-dark-p: #00a96a;   /* Adjusted to match primary tone */
+  --secondary-p: #46669c;      /* Slightly more saturated for clarity */
+  --light-p: #f4f5f7;          /* Lighter background for better popup contrast */
+  --dark-p: #2e3338;           /* Slightly deeper for better text readability */
+  --gray-p: #5f6670;           /* Higher contrast gray */
+  --light-gray-p: #cfd2d6;     /* More visible border contrast */
+  --accent-p: #ff5c5c;         /* Slightly brighter accent for button and close */
+  --dark-theme-bg-p: #1e293bcd;
+  --dark-theme-pill-p: #1e293b;
+  --dark-text-p: #e2e8f0;
+  --dark-bg-p: #0f172a;
+}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--light-p);
+    color: var(--dark-p);
+  }
+
+  .popout-fakedor {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--light-p);
+    border: 2px solid var(--light-gray-p);
+    border-radius: 12px;
+    padding: 30px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    color: var(--dark-p);
+    transition: all 0.3s ease;
+  }
+
+  .popout-fakedor h3 {
+    margin-top: 0;
+    color: var(--primary-dark-p);
+    font-size: 1.5rem;
+  }
+
+  .popout-fakedor p {
+    font-size: 1rem;
+    color: var(--gray-p);
+  }
+
+  .popout-fakedor input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid var(--gray-p);
+    border-radius: 6px;
+    background-color: white;
+    color: var(--dark-p);
+    font-size: 1rem;
+  }
+
+  .popout-fakedor button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-p);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .popout-fakedor button:hover {
+    background-color: var(--primary-dark-p);
+  }
+
+    .close-btn {
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--accent-p);
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--accent-dark-p); 
+    }
+    }
+
+
+  .popout-fakedor { 
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to   { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+}
+
+
+
+
+
+
+.popout-fakedor.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+.thank-you-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1100;
+  display: none;
+}
+
+.thank-you {
+  background-color: white;
+  border: 2px solid var(--primary-p);
+  border-radius: 12px;
+  padding: 20px 30px;
+  font-size: 1.25rem;
+  color: var(--primary-dark-p);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeInThankYou 0.4s ease forwards;
+}  
+
+
+
+
+
+.thank-you-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-dark-p);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  z-index: 9999;
+  display: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  animation: fadeInToast 0.3s ease forwards;
+}
+
+@keyframes fadeInToast {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+
+</style> -->
 
 
 
@@ -250,7 +453,72 @@
     </script>
 
 
+    <script>
+  // Show the popout when any "Add to Cart" button is clicked
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('add-to-cart')) {
+        const popout = document.getElementById('emailPopout');
+        popout.style.display = 'block';
+        }
+    });
 
+    // Close the popout
+    document.getElementById('closePopout').addEventListener('click', () => {
+        document.getElementById('emailPopout').style.display = 'none';
+    });
+    </script>
+<!-- 
+thank you popup -->
+    <script> 
+       document.addEventListener('DOMContentLoaded', () => {
+  const subscribeBtn = document.getElementById('subscribeBtn');
+  const emailInput = document.getElementById('subscribeEmail');
+  const popout = document.getElementById('emailPopout');
+  const thankYouToast = document.getElementById('thankYouToast');
+
+  const closePopoutBtn = document.getElementById('closePopout');
+
+  // Close popup on (×) button click
+  closePopoutBtn.addEventListener('click', () => {
+    closePopoutWithAnimation();
+  });
+
+  subscribeBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+
+    if (validateEmail(email)) {
+      // Animate and close the popup
+      closePopoutWithAnimation();
+
+      // Clear input
+      emailInput.value = '';
+
+      // Show thank-you message with animation
+        thankYouToast.style.display = 'block';
+
+        setTimeout(() => {
+        thankYouToast.style.display = 'none';
+        }, 3000);
+
+    } else {
+      alert('Please enter a valid email address.');
+    }
+  });
+
+  function closePopoutWithAnimation() {
+    popout.classList.add('fade-out');
+    setTimeout(() => {
+      popout.style.display = 'none';
+      popout.classList.remove('fade-out');
+    }, 300); // Match the fadeOut animation duration
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+});
+
+    </script>
 
 
 

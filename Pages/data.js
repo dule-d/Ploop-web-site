@@ -500,10 +500,51 @@ function filterProducts() {
     renderProducts();
 }
 
-// Render products
+// // Render products
+// function renderProducts() {
+//     productGrid.innerHTML = '';
+    
+//     if (filteredProducts.length === 0) {
+//         productGrid.innerHTML = `
+//             <div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+//                 <i class="fas fa-search" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+//                 <h3>No products found</h3>
+//                 <p>Try adjusting your filters or search terms</p>
+//             </div>
+//         `;
+//         return;
+//     }
+    
+//     filteredProducts.forEach((product, index) => {
+//         const productCard = document.createElement('div');
+//         productCard.className = 'product-card';
+//         productCard.style.animationDelay = `${index * 0.1}s`;
+
+//         productCard.innerHTML = `
+//             <div class="product-image">${product.icon}</div>
+//             <div class="product-info">
+//                 <div class="product-category">
+//                     <i class="fas fa-tag"></i>
+//                     ${product.subcategory.charAt(0).toUpperCase() + product.subcategory.slice(1)}
+//                 </div>
+//                 <h3 class="product-name">${product.name}</h3>
+//                 <p class="product-description">${product.description}</p>
+//                 ${product.kg ? `<p class="product-weight">${product.kg}Kg</p>` : ''}
+//                 <div class="product-footer">
+//                     <div class="product-price">${product.price}</div>
+//                     <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+//                 </div>
+//             </div>
+//         `;
+
+
+
+//         productGrid.appendChild(productCard);
+//     });
+// }
 function renderProducts() {
     productGrid.innerHTML = '';
-    
+
     if (filteredProducts.length === 0) {
         productGrid.innerHTML = `
             <div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 40px;">
@@ -514,7 +555,7 @@ function renderProducts() {
         `;
         return;
     }
-    
+
     filteredProducts.forEach((product, index) => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
@@ -539,7 +580,24 @@ function renderProducts() {
 
         productGrid.appendChild(productCard);
     });
+
+    // Attach event listeners to all "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Show the email popout
+            const popout = document.getElementById('emailPopout');
+            popout.style.display = 'block';
+        });
+    });
 }
+
+
+
+
+
+
+
 
 // Search functionality
 function performSearch() {
@@ -647,6 +705,7 @@ function addToCart(event, productId) {
 
 
 
+
 function updateCartCount() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItems;
@@ -662,6 +721,8 @@ document.addEventListener('click', (e) => {
         addToCart(e, productId);
     }
 });
+
+
 
 
 
